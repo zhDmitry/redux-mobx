@@ -11,14 +11,15 @@ import Store from './store'
 @observer
 class MobxExample extends React.Component {
   componentWillMount() {
+    // this will work on server
+    console.time('[mobx pure init time]')
     const storeData = normalize(fakeData).entities.elements
     this.store = new Store(storeData)
     this.first = this.store.structure.keys()[0]
-    console.log()
+    console.timeEnd('[mobx pure init time]')
   }
   state = {}
   sayHello = () => {
-    console.time('[Redux batch actions]')
     this.store.structure.get(this.first).setColor(Math.random())
   }
 
