@@ -1,16 +1,20 @@
 import React from 'react'
 import universal from 'react-universal-component'
 import styles from '../css/App'
-import UsageHero from './UsageHero'
 import Loading from './Loading'
+import data from './data.json'
 import NotFound from './NotFound'
 import { pages, nextIndex, indexFromPath } from '../utils'
+import Mobx from './publish-components/mobx'
 
-const UniversalComponent = universal(props => import(`./${props.page}`), {
-  minDelay: 1200,
-  loading: Loading,
-  error: NotFound
-})
+export const Element = universal(
+  props => import(`./publish-components/${props.name}`),
+  {
+    minDelay: 100,
+    loading: Loading,
+    error: NotFound
+  }
+)
 
 export default class App extends React.Component {
   render() {
@@ -20,27 +24,12 @@ export default class App extends React.Component {
     const buttonClass = `${styles[page]} ${loadingClass}`
 
     return (
-      <div className={styles.container}>
-        <h1>Hello Reactlandia</h1>
-        {done && <div className={styles.checkmark}>all loaded ✔</div>}
-
-        <UsageHero page={page} />
-
-        <UniversalComponent
-          page={page}
-          onBefore={this.beforeChange}
-          onAfter={this.afterChange}
-          onError={this.handleError}
-        />
-
+      <div className={styles.container} style={{ background: 'white' }}>
         <button className={buttonClass} onClick={this.changePage}>
-          {this.buttonText()}
+          Go to {pages[index + 1] || pages[0]}
         </button>
-
-        <p>
-          <span>*why are you looking at this? refresh the page</span>
-          <span>and view the source in Chrome for the real goods</span>
-        </p>
+        {(data[page.toLowerCase()] || data.default)
+          .map((el, i) => <Element key={i} name={el} />)}
       </div>
     )
   }

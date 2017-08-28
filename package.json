@@ -14,13 +14,22 @@
     "cm": "git-cz"
   },
   "dependencies": {
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "colors": "^1.1.2",
     "express": "^4.15.2",
     "express-no-favicons": "^0.0.1",
     "history": "^4.6.3",
+    "mobx": "^3.2.2",
+    "mobx-react": "^4.2.2",
+    "mobx-state-tree": "^0.10.2",
+    "normalizr": "^3.2.3",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-redux": "^5.0.6",
     "react-universal-component": "^2.5.0",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "uuid": "^3.1.0",
     "webpack-dev-middleware": "^1.11.0",
     "webpack-flush-chunks": "^1.1.17"
   },

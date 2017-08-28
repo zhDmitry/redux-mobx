@@ -20,8 +20,9 @@ let isBuilt = false
 
 const done = () =>
   !isBuilt &&
-  app.listen(3000, () => {
+  app.listen(3000, '127.0.0.1', () => {
     isBuilt = true
+
     console.log('BUILD COMPLETE -- Listening @ http://localhost:3000'.magenta)
   })
 
@@ -38,6 +39,7 @@ if (DEV) {
 }
 else {
   webpack([clientConfigProd, serverConfigProd]).run((err, stats) => {
+    console.log(err)
     const clientStats = stats.toJson().children[0]
     const serverRender = require('../buildServer/main.js').default
 

@@ -1,0 +1,8 @@
+{
+  "redux-init": ["redux-init-time"],
+  "mobx-init": ["mobx-init-time"],
+  "mobx-batch": ["mobx"],
+  "redux-batch": ["redux"],
+  "mobx-pure": ["mobx-pure"],
+  "default": ["gallery"]
+}
